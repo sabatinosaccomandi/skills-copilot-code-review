@@ -15,8 +15,13 @@
     <header>
       <h1>Mergington High School</h1>
       <h2>Extracurricular Activities</h2>
+      <div id="announcements-container" aria-live="polite"></div>
       <div id="user-controls">
         <div id="user-status">
+          <button id="manage-announcements-button" class="icon-button hidden" aria-label="Manage announcements">
+            <span aria-hidden="true">📣</span>
+            <span>Manage Announcements</span>
+          </button>
           <button id="login-button" class="icon-button">
             <span class="user-icon">👤</span>
             <span>Login</span>
@@ -135,5 +140,49 @@
     </div>
 
     <script src="app.js"></script>
+
+    <!-- Announcements Management Modal -->
+    <div id="announcements-modal" class="modal hidden" aria-hidden="true">
+      <div class="modal-content announcements-modal-content">
+        <span class="close-announcements-modal">&times;</span>
+        <h3>Manage Announcements</h3>
+        <p class="modal-subtitle">Create updates and control when each message is visible.</p>
+
+        <form id="announcement-form" class="announcement-form">
+          <input type="hidden" id="announcement-id" />
+          <div class="form-group">
+            <label for="announcement-message">Announcement Message:</label>
+            <textarea
+              id="announcement-message"
+              required
+              maxlength="300"
+              rows="3"
+              placeholder="Type your school announcement..."
+            ></textarea>
+          </div>
+
+          <div class="announcement-dates-grid">
+            <div class="form-group">
+              <label for="announcement-start-date">Start Date (optional):</label>
+              <input type="date" id="announcement-start-date" />
+            </div>
+            <div class="form-group">
+              <label for="announcement-expiration-date">Expiration Date:</label>
+              <input type="date" id="announcement-expiration-date" required />
+            </div>
+          </div>
+
+          <div class="announcement-form-actions">
+            <button type="submit" id="save-announcement-button">Save Announcement</button>
+            <button type="button" id="clear-announcement-form" class="secondary-button">Clear</button>
+          </div>
+        </form>
+
+        <div class="announcement-list-wrapper">
+          <h4>Existing Announcements</h4>
+          <div id="announcements-list" class="announcement-list"></div>
+        </div>
+      </div>
+    </div>
   </body>
 </html>
